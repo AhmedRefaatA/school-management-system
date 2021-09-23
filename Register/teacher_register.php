@@ -9,14 +9,15 @@
     $add_sql = "SELECT address.id as id, cities.name as city, regions.name as region FROM address
     INNER JOIN cities ON address.city_id = cities.id INNER JOIN regions on address.city_id = regions.id";
     $add_op = mysqli_query($connect, $add_sql);
-    //$add_data = mysqli_fetch_assoc($add_op);
-    //var_dump($add_data['region']);exit;
+    $sbj_sql = select("*","subjects");
+    $sbj_op = mysqli_query($connect, $sbj_sql); 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
   
         $name = ["name" => filter_var(clean($_POST["name"]), FILTER_SANITIZE_STRING)];
         $email = ["email" => filter_var(clean($_POST["email"]), FILTER_VALIDATE_EMAIL)];
         $password = ["password" => clean($_POST["password"])];
         $address = ["address" => clean($_POST["address"])];
+        $subject = ["subject" => clean($_POST["subject"])];
         $dateOfBirth = ["dob" => clean($_POST["dob"])];
         $gender = ["gender" => clean($_POST["gender"])];
 
@@ -27,34 +28,38 @@
         $prof_type     = $_FILES['profile']['type'];
         $prof_check    = ['profile' => $_FILES['profile']['name']];
 
-        $checkempty = checkempty([$name, $email, $password, $address, $dateOfBirth, $gender, $prof_check]);
+        $checkempty = checkempty([$name, $email, $password, $address, $subject,$dateOfBirth, $gender, $prof_check]);
         $validName = validPattern($name["name"], "string");
         $validPassword = validPattern($password['password'], "len", 8);
         $validDOB = validPattern($dateOfBirth['dob'], "date");
         $validGender = validPattern($gender['gender'], "gender");
         $validAddress = validPattern($address['address'], "int");
+        $validSubject = validPattern($subject['subject'], "int");
         $validProf = validPattern($prof_type, "img");
        
       
-        if($checkempty && $validName && $validPassword && $validDOB && $validGender && $validAddress && $validProf){
+        if($checkempty && $validName && $validPassword && $validDOB && $validGender && $validAddress && $validSubject && $validProf){
           $name = $name["name"];
           $email = $email["email"];
           $password = md5($password["password"]);
           $address = $address["address"];
+          $subject = $subject["subject"];
           $dateOfBirth = $dateOfBirth["dob"];
           $gender = $gender["gender"];
 
           #Profile section ...
           $extArray = explode('/',$prof_type);
           $finalName =   rand().time().'.'.$extArray[1];
-          $desPath = '../../Media/profiles/'.$finalName;
+          $desPath = '../Media/profiles/'.$finalName;
           if(move_uploaded_file($prof_tmp_path,$desPath)){
 
 
-            $sql = insert("users", ['name', 'email', 'password', 'address_id', 'dateOfBirth', 'gender', 'role_id', 'profile', 'verified'], [$name, $email, $password, (int)$address, $dateOfBirth, $gender, 1, $finalName, (int)1]);
+            $sql = insert("users", ['name', 'email', 'password', 'address_id', 'dateOfBirth', 'gender', 'role_id', 'profile', 'verified'], [$name, $email, $password, (int)$address, $dateOfBirth, $gender, 2, $finalName, (int)0]);
             $op = mysqli_query($connect, $sql);
-            echo mysqli_error($connect);
             if($op){
+              $Lid = mysqli_insert_id($connect);
+              $sql = insert("teacher_data", ["teacher_id", "subject_id"], [$Lid, $subject]);
+              $op = mysqli_query($connect, $sql);
                 header("Location: index.php");
             } else{
                 messageAlert("Error in file upload");
@@ -102,7 +107,7 @@
 
           <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" >Sign up Teacher</p>
 
-          <form class="mx-1 mx-md-4" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+          <form class="mx-1 mx-md-4" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
 
             <div class="d-flex flex-row align-items-center mb-4">
               <div class="form-outline flex-fill mb-0">
@@ -147,6 +152,18 @@
                   <select name="address">
                       <?php while ($add_data = mysqli_fetch_assoc($add_op)) {?>
                           <option value = <?php echo $add_data['id'];?>><?php echo $add_data['city'] .' - ' . $add_data['region'];?></option>
+                      <?php }?>
+
+                  </select>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row align-items-center mb-4">
+              <div class="form-outline flex-fill mb-0">
+                  <label style="padding-right: 20px;">Teacher Specialization*</label>
+                  <select name="subject">
+                      <?php while ($sbj_data = mysqli_fetch_assoc($sbj_op)) {?>
+                          <option value = <?php echo $sbj_data['id'];?>><?php echo $sbj_data['title']?></option>
                       <?php }?>
 
                   </select>
