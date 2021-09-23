@@ -54,10 +54,22 @@ function validPattern($input, $flag, $len=0){
             
             return $time;
             break;
-
+        
+        case 'date':
+            $pattern = "/^[1,2][0-9]{3}[-,\/][0-9][0-9][-,\/][0-9][0-9]/";
+            $date = preg_match($pattern, $input);
+            
+            return $date;
+            break;
         
         case 'int':
             $input = filter_var($input, FILTER_VALIDATE_INT);
+            
+            return $input;
+            break;
+
+        case 'bool':
+            $input = filter_var($input, FILTER_VALIDATE_BOOL);
             
             return $input;
             break;
@@ -68,6 +80,41 @@ function validPattern($input, $flag, $len=0){
             } else {
                 return true;
             }
+            break;
+
+        case "gender":
+            if($input == 'male' || $input == 'female'){
+                return true;
+            } else {
+                return false;
+            }
+            break;
+
+        case 'img': 
+            $allowedExt = ['png','jpeg', 'jpg'];
+    
+            $extArray = explode('/',$input);
+        
+            if(in_array($extArray[1],$allowedExt)){
+                return true;
+            }else{
+                return false;
+            }
+    
+            break;
+
+        case 'document': 
+            $allowedExt = ['pdf','docx', 'odt', 'xlsx', 'ppt', 'pptx', 'txt'];
+    
+            $extArray = explode('/',$input);
+        
+            if(in_array($extArray[1],$allowedExt)){
+                return true;
+            }else{
+                return false;
+            }
+    
+            break;
     
             
     }
@@ -99,7 +146,12 @@ function update($tableName, $colName, $values, $condition){
         $str = '';
         for($i=0;$i < count($colName);$i++){
             if(count($colName) > 1){
-                $str .= "$colName[$i] = '$values[$i]', ";
+                if($i == count($colName) -1){
+                    $str .= "$colName[$i] = '$values[$i]'";
+                }else{
+                    $str .= "$colName[$i] = '$values[$i]', ";
+                }
+                
             }else{
                 $str .= "$colName[$i] = '$values[$i]'"; 
             }

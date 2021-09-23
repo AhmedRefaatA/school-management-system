@@ -2,7 +2,8 @@
     require "../helper/db_connect.php";
     require "../helper/helper.php";
     
-    $sql = select('*', 'subjects');
+    
+    $sql = "SELECT level_subjects.*, levels.title as level, subjects.title as subject FROM level_subjects INNER JOIN levels ON level_subjects.level_id = levels.id INNER JOIN subjects ON level_subjects.subject_id = subjects.id";
     $op = mysqli_query($connect, $sql);
     
     
@@ -23,12 +24,12 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Display Subjects</h3>
+            <h3>Display Materials</h3>
             <ul>
                 <li>
                     <a href="dashboard.php">Home</a>
                 </li>
-                <li>Subjects</li>
+                <li>Materials</li>
             </ul>
         </div>
         <div class="col-8-xxxl col-12">
@@ -36,7 +37,7 @@
                 <div class="card-body">
                     <div class="heading-layout1">
                         <div class="item-title">
-                            <h3>All Subjects</h3>
+                            <h3>All Materials</h3>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -44,8 +45,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Subject ID</th>
-                                    <th>Title</th>
+                                    <th>Material ID</th>
+                                    <th>Materials Name</th>
+                                    <th>Level</th>
+                                    <th>Subject</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -57,7 +60,9 @@
                                 <tr>
                                     <td><?php echo ++$i ?></td>
                                     <td><?php echo $data['id']; ?></td>
-                                    <td><?php echo $data['title']; ?></td>
+                                    <td><?php echo $data['material']; ?></td>
+                                    <td><?php echo $data['level']; ?></td>
+                                    <td><?php echo $data['subject']; ?></td>
                                     <td>
                                         <div class="col-12 form-group mg-t-8">
                                             <a href="edite.php?id=<?php echo $data['id']?>" style="color:#fff" class="btn-lg btn-gradient-yellow btn-hover-bluedark"><i class="fa fa-pencil"></i>Edite</a>
