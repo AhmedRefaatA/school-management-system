@@ -9,13 +9,41 @@
     $level_op = mysqli_query($connect, $level_sql);
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $level = ["title" => clean($_POST['title'])];
-        $validLevel = validPattern($level["title"], "level");
+        $room = ["room" => clean($_POST["room"])];
+        $description = ["desc" => clean($_POST["desc"])];
+        $lead = ["lead" => clean($_POST["lead"])];
+        $level = ["level" => clean($_POST["level"])];
         
 
-        if($validLevel && !empty($level['title'])){
-            $level = $level["title"];
-            $sql = insert('levels', ['title'], [$level]);
+        $schd_tmp_path = $_FILES['schdule']['tmp_name'];
+        $schd_name     = $_FILES['schdule']['name'];
+        $schd_size     = $_FILES['schdule']['size'];
+        $schd_type     = $_FILES['schdule']['type'];
+        $schd_check    = ['schdule' => $_FILES['schdule']['name']];
+        $validSchd= validPattern($schd_type, "document");
+
+        $check = checkempty([$room, $description, $lead, $level, $schd_check]);
+        $validLevel = validPattern($level['level'], "int");
+        $validLead = validPattern($lead['lead'], "int");
+        $validRoom = validPattern($room['room'], "int");
+        $validDesc = validPattern($description['desc'], "string");
+        
+
+        if($validLevel && $validLead && $validRoom && $validDesc && $check && $validSchd){
+            
+            $room = $room["room"];
+            $description = $description["desc"];
+            $lead = $lead["lead"];
+            $level = $level["level"];
+
+            #SCHDULE section ...
+            $extArray = explode('/',$schd_type);
+            $finalName =   rand().time().'.'.$extArray[1];
+            $desPath = '../Media/schdules/'.$finalName;
+            if(move_uploaded_file($schd_tmp_path,$desPath)){
+
+            
+            $sql = insert('classes', ['room', 'description', 'schdule', 'level_id', 'leader_id'], [$room, $description, $finalName, $level, $lead]);
             $op = mysqli_query($connect, $sql);
             if($op){
                 redirect('index.php');
@@ -31,7 +59,7 @@
 
 
 
-
+    }
     require "../layouts/header.php";
     
 ?>
@@ -62,7 +90,7 @@
                         <h3>Add New Class</h3>
                     </div>
                 </div>
-                <form class="new-added-form" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                <form class="new-added-form" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                             <label>Class Room *</label>
