@@ -23,7 +23,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $op = mysqli_query($connect, $sql);
     $data = mysqli_fetch_assoc($op);
-    var_dump($data);
+    $_SESSION['user'] = $data;
+    var_dump($_SESSION);
 
   } else{
     echo "error";
