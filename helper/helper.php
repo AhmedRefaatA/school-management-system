@@ -176,5 +176,34 @@ function messageAlert($message, $type='danger'){
 function redirect($path){
     return header("Location: $path");
 }
+function fireWall($role){
+    $role_id = $_SESSION['user']['role_id'];
+    $host = 'http://localhost:8000/';
+    switch ($role) {
+        case "admin":
+            if($role_id != 1){
+                redirect($host."errors/401.php");
+            }
+            break;
+            case "teacher":
+            if($role_id != 2){
+                redirect($host."errors/401.php");
+            }
+            break;
+            case "student":
+            if($role_id != 3){
+                redirect($host."errors/401.php");
+            }
+            break;
+            case "super":
+            if($role_id != 4){
+                redirect($host."errors/401.php");
+            }
+            break;
+        default:
+            # code...
+            break;
+    }
+}
 
 ?>

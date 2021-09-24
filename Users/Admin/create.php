@@ -2,7 +2,7 @@
     require "../../helper/db_connect.php";
     require "../../helper/helper.php";
 
-
+fireWall("admin");
 
     $add_sql = "SELECT address.id as id, cities.name as city, regions.name as region FROM address
     INNER JOIN cities ON address.city_id = cities.id INNER JOIN regions on address.city_id = regions.id";
