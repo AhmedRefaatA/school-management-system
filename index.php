@@ -1,4 +1,5 @@
 <?php
+  require "./helper/db_connect.php";
   require "./helper/helper.php";
   require "./layouts/home_header.php";
 
@@ -18,7 +19,7 @@
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Shcool Me <span>...</span></h2>
                 <p class="animate__animated animate__fadeInUp">online platform for school education</p>
-                <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Get Started</a>
+                <a href="<?php echo $host;?>Register/register.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Get Started</a>
               </div>
             </div>
           </div>
@@ -30,7 +31,7 @@
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">support students’ identities</h2>
                 <p class="animate__animated animate__fadeInUp">Schools join the Language Friendly School Network to support students’ identities</p>
-                <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Get Started</a>
+                <a href="<?php echo $host;?>Register/register.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Get Started</a>
               </div>
             </div>
           </div>
@@ -42,7 +43,7 @@
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Education Talks</h2>
                 <p class="animate__animated animate__fadeInUp">Multilingual classrooms the new reality of urban schools</p>
-                <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Get Started</a>
+                <a href="<?php echo $host;?>Register/register.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Get Started</a>
               </div>
             </div>
           </div>
@@ -62,28 +63,8 @@
   </section><!-- End Hero -->
 
   <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <div class="logo">
-        <h1 class="text-light"><a href="index.html"><span>School Me</span></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="<?php echo $host;?>assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
-          <li><a class="nav-link scrollto" href="#activity">Activity</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="login.php">Login</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-    </div>
-  </header><!-- End Header -->
-
+  <?php require "./layouts/nav.php"?>
+  
   <main id="main">
 
     <!-- ======= About Us Section ======= -->

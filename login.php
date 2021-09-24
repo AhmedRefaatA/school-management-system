@@ -22,14 +22,50 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $op = mysqli_query($connect, $sql);
-    $data = mysqli_fetch_assoc($op);
-    $_SESSION['user'] = $data;
-    var_dump($_SESSION);
-
-  } else{
-    echo "error";
+   if(mysqli_num_rows($op) == 1){
+      $data = mysqli_fetch_assoc($op);
+      $_SESSION['user'] = $data;
+   }else{
+     echo messageAlert("error login please try again");
+   }
   }
-}
+    
+    if(isset($_SESSION['user'])){
+      switch ($_SESSION['user']['role_id']) {
+        case 1:
+            $title = "Admin : ". $_SESSION['user']['name'];
+            if($_SESSION['user']['verified'] == 1){
+              redirect($host . "Users/Admin/home.php");
+            }elseif($_SESSION['user']['verified'] == 0){
+              redirect($host . "errors/waiting.php");
+            }
+            
+            break;
+        case 2:
+            $title = "Teacher : ". $_SESSION['user']['name'];
+            if($_SESSION['user']['verified'] == 1){
+              redirect($host . "Users/Teacher/home.php");
+            }elseif($_SESSION['user']['verified'] == 0){
+              redirect($host . "errors/waiting.php");
+            }
+            break;
+        case 3:
+            $title = "Student : ". $_SESSION['user']['name'];
+            if($_SESSION['user']['verified'] == 1){
+              redirect($host . "Users/Student/home.php");
+            }elseif($_SESSION['user']['verified'] == 0){
+              redirect($host . "errors/waiting.php");
+            }
+            break;
+        case 4:
+
+            break;
+        
+    }
+    }
+
+  }
+
 
 ?>
 
@@ -75,11 +111,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                   
                 </form>
                 <a href="#!" class="forgot-password-link">Forgot password?</a>
-                <p class="login-card-footer-text">Don't have an account? <a href="#!" class="text-reset">Register here</a></p>
-                <nav class="login-card-footer-nav">
-                  <a href="#!">Terms of use.</a>
-                  <a href="#!">Privacy policy</a>
-                </nav>
+                <p class="login-card-footer-text">Don't have an account? <a href="<?php echo $host;?>Register/register.php" class="text-reset">Register here</a></p>
+               
             </div>
           </div>
         </div>
