@@ -1,7 +1,7 @@
 <?php 
  require "../helper/db_connect.php";
  require "../helper/helper.php";
- 
+ fireWall("admin");
 
 
  $sub_sql = select("*", "subjects");
@@ -63,7 +63,7 @@
                     <h3>Update Material</h3>
                     <ul>
                         <li>
-                            <a href="<?php echo $host?>dashboard.php">Home</a>
+                            <a href="<?php echo $host?>index.php">Home</a>
                         </li>
                         <li>Update Material</li>
                     </ul>

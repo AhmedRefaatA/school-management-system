@@ -1,6 +1,7 @@
 <?php 
  require "../helper/db_connect.php";
  require "../helper/helper.php";
+ fireWall("super");
  
  if($_SERVER['REQUEST_METHOD'] == 'GET'){
      $id = clean(validPattern(filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT), 'int'));
@@ -53,7 +54,7 @@
                     <h3>Update Roles</h3>
                     <ul>
                         <li>
-                            <a href="<?php echo $host?>dashboard.php">Home</a>
+                            <a href="<?php echo $host?>index.php">Home</a>
                         </li>
                         <li>Update Roles</li>
                     </ul>

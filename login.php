@@ -3,12 +3,15 @@
 
 
 <?php 
-  
+  require "helper/db_connect.php";
+  require "helper/helper.php";
+  if(isset($_SESSION['user'])){
+    fireWall('register');
+  }
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-  require "helper/db_connect.php";
-  require "helper/helper.php";
+  
 
   $email = ["email" => filter_var(clean($_POST["email"]), FILTER_VALIDATE_EMAIL)];
   $password = ["password" => clean($_POST["password"])];
@@ -35,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         case 1:
             $title = "Admin : ". $_SESSION['user']['name'];
             if($_SESSION['user']['verified'] == 1){
-              redirect($host . "Users/Admin/home.php");
+              redirect($host . "dashboard.php");
             }elseif($_SESSION['user']['verified'] == 0){
               redirect($host . "errors/waiting.php");
             }
@@ -44,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         case 2:
             $title = "Teacher : ". $_SESSION['user']['name'];
             if($_SESSION['user']['verified'] == 1){
-              redirect($host . "Users/Teacher/home.php");
+              redirect($host);
             }elseif($_SESSION['user']['verified'] == 0){
               redirect($host . "errors/waiting.php");
             }
@@ -52,12 +55,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         case 3:
             $title = "Student : ". $_SESSION['user']['name'];
             if($_SESSION['user']['verified'] == 1){
-              redirect($host . "Users/Student/home.php");
+              redirect($host);
             }elseif($_SESSION['user']['verified'] == 0){
               redirect($host . "errors/waiting.php");
             }
             break;
         case 4:
+            $title = "Super Admin : ". $_SESSION['user']['name'];
+            if($_SESSION['user']['verified'] == 1){
+              redirect($host . "dashboard.php");
+            }elseif($_SESSION['user']['verified'] == 0){
+              redirect($host . "errors/waiting.php");
+            }
 
             break;
         

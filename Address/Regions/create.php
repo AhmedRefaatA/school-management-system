@@ -1,7 +1,7 @@
 <?php
     require "../../helper/db_connect.php";
     require "../../helper/helper.php";
-
+    fireWall("admin");
 
 
     $city_sql = select("*", "cities");
@@ -51,7 +51,7 @@
             <h3>Add Region</h3>
             <ul>
                 <li>
-                    <a href="<?php echo $host?>dashboard.php">Home</a>
+                    <a href="<?php echo $host?>index.php">Home</a>
                 </li>
                 <li>Address/Regions/Add Region</li>
             </ul>

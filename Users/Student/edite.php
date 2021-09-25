@@ -101,7 +101,7 @@
             <h3>Update Admin</h3>
             <ul>
                 <li>
-                    <a href="<?php echo $host?>dashboard.php">Home</a>
+                    <a href="<?php echo $host?>index.php">Home</a>
                 </li>
                 <li>Users/Admin/Update Admin</li>
             </ul>

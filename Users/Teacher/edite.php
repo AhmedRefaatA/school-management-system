@@ -110,7 +110,7 @@
             <h3>Update Teacher</h3>
             <ul>
                 <li>
-                    <a href="<?php echo $host?>dashboard.php">Home</a>
+                    <a href="<?php echo $host?>index.php">Home</a>
                 </li>
                 <li>Users/Teacher/Update Teacher</li>
             </ul>

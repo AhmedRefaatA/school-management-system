@@ -1,6 +1,7 @@
 <?php
     require "../../helper/db_connect.php";
     require "../../helper/helper.php";
+    fireWall("super");
 
 fireWall("admin");
 
@@ -92,7 +93,7 @@ fireWall("admin");
             <h3>Add Admin</h3>
             <ul>
                 <li>
-                    <a href="<?php echo $host?>dashboard.php">Home</a>
+                    <a href="<?php echo $host?>index.php">Home</a>
                 </li>
                 <li>Users/Admin/Add Admin</li>
             </ul>

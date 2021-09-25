@@ -22,6 +22,7 @@
 <?php 
     require "../../layouts/header_menu.php";
     require "../../layouts/sidebar.php";
+    fireWall("admin");
 ?>
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
@@ -29,7 +30,7 @@
             <h3>Display Regions</h3>
             <ul>
                 <li>
-                    <a href="dashboard.php">Home</a>
+                    <a href="<?php echo $host;?>index.php">Home</a>
                 </li>
                 <li>Regions</li>
             </ul>

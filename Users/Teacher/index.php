@@ -26,7 +26,7 @@
                     <h3>Teachers</h3>
                     <ul>
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="<?php echo $host;?>index.php">Home</a>
                         </li>
                         <li>Users/Teacher/All Teachers</li>
                     </ul>

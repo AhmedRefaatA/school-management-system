@@ -1,6 +1,7 @@
 <?php 
     require "../../helper/db_connect.php";
     require "../../helper/helper.php";
+    fireWall("admin");
     
     $sql = "SELECT users.*,users.id as user_id, address.id as id, cities.name as city, regions.name as region FROM users
     INNER JOIN address ON users.address_id = address.id INNER JOIN cities on address.city_id = cities.id INNER JOIN regions on address.city_id = regions.id WHERE role_id = 1";
@@ -27,7 +28,7 @@
                     <h3>Admins</h3>
                     <ul>
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="<?php echo $host;?>index.php">Home</a>
                         </li>
                         <li>Users/Admin/All Admins</li>
                     </ul>

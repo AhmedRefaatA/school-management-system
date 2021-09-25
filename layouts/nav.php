@@ -21,6 +21,8 @@
                 $role = "student";
                 break;
             case 4:
+                $title = "Super Admin : ". $_SESSION['user']['name'];
+                $role = "super";
 
                 break;
             
@@ -43,9 +45,13 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-            <?php if($role == "admin"){?>
+            <?php if($role == "super"){?>
                 <li><a class="nav-link scrollto active" href="<?php echo $host;?>index.php">Home</a></li>
-                <li><a class="nav-link scrollto active" href="<?php echo $host;?>index.php">Dashboard</a></li>
+                <li><a class="nav-link scrollto active" href="<?php echo $host;?>dashboard.php">Dashboard</a></li>
+                <li><a class="nav-link scrollto active" href="<?php echo $host;?>logout.php">Logout</a></li>
+            <?php }elseif($role == "admin"){?>
+                <li><a class="nav-link scrollto active" href="<?php echo $host;?>index.php">Home</a></li>
+                <li><a class="nav-link scrollto active" href="<?php echo $host;?>dashboard.php">Dashboard</a></li>
                 <li><a class="nav-link scrollto active" href="<?php echo $host;?>logout.php">Logout</a></li>
                 <?php }elseif($role == "teacher"){?>
                     <li><a class="nav-link scrollto active" href="<?php echo $host;?>index.php">Home</a></li>

@@ -1,6 +1,7 @@
 <?php 
     require "../../helper/db_connect.php";
     require "../../helper/helper.php";
+    fireWall("admin");
     
     $sql = select('*', 'cities');
     $op = mysqli_query($connect, $sql);
@@ -26,7 +27,7 @@
             <h3>Display Cities</h3>
             <ul>
                 <li>
-                    <a href="dashboard.php">Home</a>
+                    <a href="<?php echo $host;?>index.php">Home</a>
                 </li>
                 <li>Cities</li>
             </ul>

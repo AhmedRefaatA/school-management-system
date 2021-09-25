@@ -17,7 +17,7 @@
             <div class="carousel-background"><img src="<?php echo $host;?>assets/img/slide/slide-1.jpg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">Shcool Me <span>...</span></h2>
+                <h2 class="animate__animated animate__fadeInDown">School Me <span>...</span></h2>
                 <p class="animate__animated animate__fadeInUp">online platform for school education</p>
                 <a href="<?php echo $host;?>Register/register.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Get Started</a>
               </div>

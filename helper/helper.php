@@ -181,7 +181,7 @@ function fireWall($role){
     $host = 'http://localhost:8000/';
     switch ($role) {
         case "admin":
-            if($role_id != 1){
+            if(!in_array($role_id, [1,4])){
                 redirect($host."errors/401.php");
             }
             break;
@@ -200,6 +200,16 @@ function fireWall($role){
                 redirect($host."errors/401.php");
             }
             break;
+            case "auth":
+                if(!in_array($role_id, [1,2,3,4])){
+                    redirect($host."errors/401.php");
+                }
+                break;
+            case "register":
+                if(isset($_SESSION['user'])){
+                    redirect($host."errors/404.php");
+                }
+                break;
         default:
             # code...
             break;

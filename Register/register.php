@@ -3,6 +3,10 @@
     require "../helper/helper.php";
     require "../layouts/home_header.php";
     require "../layouts/nav.php";
+    if(isset($_SESSION['user'])){
+      fireWall('register');
+    }
+    
 ?>
 
 <section class="about">

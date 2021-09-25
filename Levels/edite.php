@@ -46,6 +46,7 @@
 <?php 
     require "../layouts/header_menu.php";
     require "../layouts/sidebar.php";
+    fireWall("admin");
 ?>
     <div class="dashboard-content-one">
                 <!-- Breadcubs Area Start Here -->
@@ -53,7 +54,7 @@
                     <h3>Update Roles</h3>
                     <ul>
                         <li>
-                            <a href="<?php echo $host?>dashboard.php">Home</a>
+                            <a href="<?php echo $host?>index.php">Home</a>
                         </li>
                         <li>Update Roles</li>
                     </ul>

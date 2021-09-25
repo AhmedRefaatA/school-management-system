@@ -1,6 +1,7 @@
 <?php 
     require "../helper/db_connect.php";
     require "../helper/helper.php";
+    fireWall("auth");
 
 
 
@@ -29,7 +30,7 @@
             <h3>Display Regions</h3>
             <ul>
                 <li>
-                    <a href="dashboard.php">Home</a>
+                    <a href="<?php echo $host;?>index.php">Home</a>
                 </li>
                 <li>Regions</li>
             </ul>

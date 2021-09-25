@@ -1,6 +1,7 @@
 <?php 
     require "../helper/db_connect.php";
     require "../helper/helper.php";
+    fireWall("auth");
     
     
     $sql = "SELECT level_subjects.*, levels.title as level, subjects.title as subject FROM level_subjects INNER JOIN levels ON level_subjects.level_id = levels.id INNER JOIN subjects ON level_subjects.subject_id = subjects.id";
@@ -27,7 +28,7 @@
             <h3>Display Materials</h3>
             <ul>
                 <li>
-                    <a href="dashboard.php">Home</a>
+                    <a href="<?php echo $host;?>index.php">Home</a>
                 </li>
                 <li>Materials</li>
             </ul>

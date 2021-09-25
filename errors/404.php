@@ -70,8 +70,8 @@
 <section id="error">
 	<div class="content">
 		<i class="fa fa-warning"></i>
-		<h1>401</h1>
-		<p>Error occurred! - Not Authorization User</p>
+		<h1>404</h1>
+		<p>Error occurred! - Not Found</p>
 		<a class="back" href="<?php echo $host;?>index.php">Back</a>
 	</div>
 </section>

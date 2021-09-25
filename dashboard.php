@@ -1,5 +1,41 @@
 <?php
+
+    require "./helper/db_connect.php";
+    require "./helper/helper.php";
     require "./layouts/header.php";
+
+    $admin_sql = "SELECT count(*) FROM users Where role_id = 1";
+    $admin_op = mysqli_query($connect, $admin_sql);
+    $admins = mysqli_fetch_assoc($admin_op);
+
+    $teacher_sql = "SELECT count(*) FROM users Where role_id = 2";
+    $teacher_op = mysqli_query($connect, $teacher_sql);
+    $teachers = mysqli_fetch_assoc($teacher_op);
+
+    $std_sql = "SELECT count(*) FROM users Where role_id = 3";
+    $std_op = mysqli_query($connect, $std_sql);
+    $students = mysqli_fetch_assoc($std_op);
+
+    $lv_sql = "SELECT count(*) FROM levels";
+    $lv_op = mysqli_query($connect, $lv_sql);
+    $levels = mysqli_fetch_assoc($lv_op);
+
+    $cor_sql = "SELECT count(*) FROM courses";
+    $cor_op = mysqli_query($connect, $cor_sql);
+    $courses = mysqli_fetch_assoc($cor_op);
+
+    $sub_sql = "SELECT count(*) FROM subjects";
+    $sub_op = mysqli_query($connect, $sub_sql);
+    $subjects = mysqli_fetch_assoc($sub_op);
+
+    $class_sql = "SELECT count(*) FROM classes";
+    $class_op = mysqli_query($connect, $class_sql);
+    $classes = mysqli_fetch_assoc($class_op);
+
+    $mat_sql = "SELECT count(*) FROM level_subjects";
+    $mat_op = mysqli_query($connect, $mat_sql);
+    $material = mysqli_fetch_assoc($mat_op);
+    
 ?>
 
 <body>
@@ -14,7 +50,7 @@
                     <h3>Admin Dashboard</h3>
                     <ul>
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="<?php echo $host;?>">Home</a>
                         </li>
                         <li>Admin</li>
                     </ul>
@@ -33,7 +69,7 @@
                                 <div class="col-6">
                                     <div class="item-content">
                                         <div class="item-title">Students</div>
-                                        <div class="item-number"><span class="counter" data-num="150000">1,50,000</span></div>
+                                        <div class="item-number"><span class="counter" data-num="<?php echo $students['count(*)']?>">1,50,000</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +88,7 @@
                                 <div class="col-6">
                                     <div class="item-content">
                                         <div class="item-title">Teachers</div>
-                                        <div class="item-number"><span class="counter" data-num="2250">2,250</span></div>
+                                        <div class="item-number"><span class="counter" data-num="<?php echo $teachers['count(*)']?>">2,250</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -70,8 +106,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="item-content">
-                                        <div class="item-title">Parents</div>
-                                        <div class="item-number"><span class="counter" data-num="5690">5,690</span></div>
+                                        <div class="item-title">Admins</div>
+                                        <div class="item-number"><span class="counter" data-num="<?php echo $admins['count(*)']?>">5,690</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -89,8 +125,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="item-content">
-                                        <div class="item-title">Admins</div>
-                                        <div class="item-number"><span class="counter" data-num="193000">1,93,000</span></div>
+                                        <div class="item-title">Classes</div>
+                                        <div class="item-number"><span class="counter" data-num="<?php echo $classes['count(*)']?>">1,93,000</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +144,7 @@
                                 <div class="col-6">
                                     <div class="item-content">
                                         <div class="item-title">Levels</div>
-                                        <div class="item-number"><span class="counter" data-num="150000">1,50,000</span></div>
+                                        <div class="item-number"><span class="counter" data-num="<?php echo $levels['count(*)']?>">1,50,000</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +163,7 @@
                                 <div class="col-6">
                                     <div class="item-content">
                                         <div class="item-title">Courses</div>
-                                        <div class="item-number"><span class="counter" data-num="2250">2,250</span></div>
+                                        <div class="item-number"><span class="counter" data-num="<?php echo $courses['count(*)']?>">2,250</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +182,7 @@
                                 <div class="col-6">
                                     <div class="item-content">
                                         <div class="item-title">Subjects</div>
-                                        <div class="item-number"><span class="counter" data-num="5690">5,690</span></div>
+                                        <div class="item-number"><span class="counter" data-num="<?php echo $subjects['count(*)']?>">5,690</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -164,8 +200,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="item-content">
-                                        <div class="item-title">Roles</div>
-                                        <div class="item-number"><span class="counter" data-num="193000">1,93,000</span></div>
+                                        <div class="item-title">Materials</div>
+                                        <div class="item-number"><span class="counter" data-num="<?php echo $material['count(*)']?>">1,93,000</span></div>
                                     </div>
                                 </div>
                             </div>

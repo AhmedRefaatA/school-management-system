@@ -1,6 +1,7 @@
 <?php
     require "../helper/db_connect.php";
     require "../helper/helper.php";
+    fireWall("admin");
 
 
 
@@ -56,7 +57,7 @@
                     <h3>All Materials</h3>
                     <ul>
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="<?php echo $host;?>index.php">Home</a>
                         </li>
                         <li>Materials</li>
                     </ul>

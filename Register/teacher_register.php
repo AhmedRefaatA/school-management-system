@@ -3,6 +3,7 @@
 <?php 
     require "../helper/db_connect.php";
     require "../helper/helper.php";
+    fireWall('register');
 
 
 
