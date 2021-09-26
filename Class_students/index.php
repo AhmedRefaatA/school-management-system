@@ -5,7 +5,7 @@
 
 
     
-    $sql = "SELECT class_students.*, classes.*, users.*, levels.title FROM class_students INNER JOIN classes ON class_students.class_id = classes.id INNER JOIN users ON class_students.student_id = users.id INNER JOIN levels ON classes.level_id = levels.id";
+    $sql = "SELECT classes.* , levels.title, users.name FROM classes INNER JOIN levels ON classes.level_id = levels.id INNER JOIN users ON classes.leader_id = users.id";
     $op = mysqli_query($connect, $sql);
     
    
@@ -44,43 +44,44 @@
                             <h3>All Classes</h3>
                         </div>
                     </div>
-                    <?php while ($data = mysqli_fetch_row($op)) {
-                        var_dump($data);
-                    }?>
                     
                     
-                    <!--div class="table-responsive">
+                    
+                    <div class="table-responsive">
                         <table class="table display data-table text-nowrap">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Region ID</th>
-                                    <th>Name</th>
-                                    <th>City</th>
+                                    <th>Class ID</th>
+                                    <th>Room</th>
+                                    <th>Level</th>
+                                    <th>Leader Name</th>
+                                    <th>Schdule</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php /*
+                                <?php 
                                     $i=0;
                                     while($data = mysqli_fetch_assoc($op)){
                                 ?>
                                 <tr>
                                     <td><?php echo ++$i ?></td>
                                     <td><?php echo $data['id']; ?></td>
+                                    <td><?php echo $data['room']; ?></td>
+                                    <td><?php echo $data['title']; ?></td>
                                     <td><?php echo $data['name']; ?></td>
-                                    <td><?php echo $data['city']; ?></td>
                                     <td>
-                                        <div class="col-12 form-group mg-t-8">
-                                            <a href="edite.php?id=<?php echo $data['id']?>" style="color:#fff" class="btn-lg btn-gradient-yellow btn-hover-bluedark"><i class="fa fa-pencil"></i>Edite</a>
-                                            <a href="delete.php?id=<?php echo $data['id']?>" style="color:#fff" class="btn-lg bg-blue-dark btn-hover-yellow"><i class="fa fa-trash"></i>Delete</a>
-                                        </div>
+                                        <a href="../Media/schdules/<?php echo $data['schdule']?>" style="color:#fff" class="btn-lg bg-blue-dark btn-hover-yellow">Show Schdule</a>
+                                    </td>
+                                    <td>
+                                        <a href="<?php echo $host?>Class_students/show_student.php?id= <?php echo $data['id']?>" style="color:#fff" class="btn-lg bg-blue-dark btn-hover-yellow">Show Students</a>  
                                     </td>
                                 </tr>
-                                <?php } */?>
+                                <?php } ?>
                             </tbody>
                         </table>
-                    </!--div-->
+                    </div>
                 </div>
             </div>
         </div>

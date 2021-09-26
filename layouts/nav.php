@@ -56,7 +56,7 @@
                 <?php }elseif($role == "teacher"){?>
                     <li><a class="nav-link scrollto active" href="<?php echo $host;?>index.php">Home</a></li>
                     <li><a class="nav-link scrollto" href="<?php echo $host;?>Classes/teacher_class.php">Classes</a></li>
-                    <li><a class="nav-link scrollto" href="<?php echo $host;?>index.php#activity">Courses</a></li>
+                    <li><a class="nav-link scrollto" href="<?php echo $host;?>Courses/create.php">Courses</a></li>
                     <li><a class="nav-link scrollto" href="<?php echo $host;?>Users/Student/profile.php">Profile</a></li>
                     <li><a class="nav-link scrollto" href="<?php echo $host;?>logout.php">Logout</a></li>
                     <?php }elseif($role == "student"){?>

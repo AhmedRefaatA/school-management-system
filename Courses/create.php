@@ -61,7 +61,7 @@
 
 
     }
-    require "../layouts/header.php";
+    require "../layouts/home_header.php";
     
 ?>
 
@@ -70,49 +70,48 @@
 <body>
     
 <?php 
-    require "../layouts/header_menu.php";
-    require "../layouts/sidebar.php";
+    require "../layouts/nav.php";
 ?>
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>Add Class</h3>
+            <h3>Add Course</h3>
             <ul>
                 <li>
-                    <a href="<?php echo $host?>index.php">Home</a>
+                    <a href="<?php echo $host?>index.php">Home</a>/Courses/Add Course
                 </li>
-                <li>Classes/Add Class</li>
+               
             </ul>
         </div>
         <div class="card height-auto">
             <div class="card-body">
                 <div class="heading-layout1">
                     <div class="item-title">
-                        <h3>Add New Class</h3>
+                        <h3>Add New Course</h3>
                     </div>
                 </div>
                 <form class="new-added-form" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
-                            <label>Class Room *</label>
-                            <input type="number" name="room" placeholder="Class Room" class="form-control">
+                            <label>Course Title*</label>
+                            <input type="number" name="room" placeholder="Course Title" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
-                            <label>Description *</label>
+                            <label>Material *</label>
                             <textarea name="desc" placeholder="class description ..." class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
-                            <label>Class schdule*</label>
+                            <label>Vedio*</label>
                             <input type="file" name="schdule" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
-                            <label>Class  Leader *</label>
+                            <label>Duration *</label>
                             <select name="lead" class="form-control">
                                 <?php while ($lead_data = mysqli_fetch_assoc($lead_op)) {?>
                                     <option value="<?php echo $lead_data['id']?>"><?php echo $lead_data['name']?></option>
@@ -140,7 +139,7 @@
             </div>
         </div>
     
-        <?php require "../layouts/footer.php"; ?>
+        <?php require "../layouts/home_footer.php"; ?>
 
 </div>
 
