@@ -55,15 +55,16 @@
                 <li><a class="nav-link scrollto active" href="<?php echo $host;?>logout.php">Logout</a></li>
                 <?php }elseif($role == "teacher"){?>
                     <li><a class="nav-link scrollto active" href="<?php echo $host;?>index.php">Home</a></li>
-                    <li><a class="nav-link scrollto" href="<?php echo $host;?>index.php#about">Classes</a></li>
+                    <li><a class="nav-link scrollto" href="<?php echo $host;?>Classes/teacher_class.php">Classes</a></li>
                     <li><a class="nav-link scrollto" href="<?php echo $host;?>index.php#activity">Courses</a></li>
+                    <li><a class="nav-link scrollto" href="<?php echo $host;?>Users/Student/profile.php">Profile</a></li>
                     <li><a class="nav-link scrollto" href="<?php echo $host;?>logout.php">Logout</a></li>
                     <?php }elseif($role == "student"){?>
                         <li><a class="nav-link scrollto active" href="<?php echo $host;?>index.php">Home</a></li>
-                        <li><a class="nav-link scrollto" href="<?php echo $host;?>index.php#about">Class</a></li>
+                        <li><a class="nav-link scrollto" href="<?php echo $host;?>Classes/student_class.php">Class</a></li>
                         <li><a class="nav-link scrollto" href="<?php echo $host;?>index.php#activity">Courses</a></li>
                         <li><a class="nav-link scrollto" href="<?php echo $host;?>index.php#activity">Level</a></li>
-                        <li><a class="nav-link scrollto" href="<?php echo $host;?>index.php#activity">Profile</a></li>
+                        <li><a class="nav-link scrollto" href="<?php echo $host;?>Users/Student/profile.php">Profile</a></li>
                         <li><a class="nav-link scrollto" href="<?php echo $host;?>logout.php">Logout</a></li>
                     <?php }else{?>
                         <li><a class="nav-link scrollto active" href="<?php echo $host;?>index.php">Home</a></li>

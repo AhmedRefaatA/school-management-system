@@ -3,7 +3,9 @@
 <?php 
     require "../helper/db_connect.php";
     require "../helper/helper.php";
-    fireWall('register');
+    if(isset($_SESSION['user'])){
+      fireWall('register');
+    }
 
 
 
@@ -54,9 +56,11 @@
 
             $sql = insert("users", ['name', 'email', 'password', 'address_id', 'dateOfBirth', 'gender', 'role_id', 'profile', 'verified'], [$name, $email, $password, (int)$address, $dateOfBirth, $gender, 3, $finalName, (int)0]);
             $op = mysqli_query($connect, $sql);
-            echo mysqli_error($connect);
+            //echo mysqli_error($connect);
             if($op){
-                header("Location: index.php");
+                //$data = mysqli_fetch_assoc($op);
+                //$_SESSION['user'] = $data;
+                redirect($host . 'index.php');
             } else{
                 messageAlert("Error in file upload");
             }
